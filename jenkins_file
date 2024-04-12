@@ -19,7 +19,7 @@ pipeline{
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/apache-tomcat-8.5.100/webapps/
+                    scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/tomcat8/webapps/
                     ssh divya@127.0.0.1 "/opt/apache-tomcat-8.5.100/bin/startup.sh"
                 """
                 }
