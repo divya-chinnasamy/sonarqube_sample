@@ -17,12 +17,14 @@ pipeline{
             }
         }
         stage("Deploy-dev"){
-            sshagent(['tomcat-new']) {
-            sh """
-                scp -o StrictHostKeyChecking=no target/div.war divya@127.0.0.1:/opt/apache-tomcat-8.5.100/webapps/
-                ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/shutdown.sh
-                ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/startup.sh
-            """
+            steps{
+                sshagent(['tomcat-new']) {
+                sh """
+                    scp -o StrictHostKeyChecking=no target/div.war divya@127.0.0.1:/opt/apache-tomcat-8.5.100/webapps/
+                    ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/shutdown.sh
+                    ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/startup.sh
+                """
+                }
             }
         }
     }
