@@ -19,10 +19,7 @@ pipeline{
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                    def sudoPassword = 'divya@123' 
-                    sh "echo '${sudoPassword}'| sudo -S cp -r /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/apache-tomcat-8.5.100/webapps/"
-                    sh "echo '${sudoPassword}'| sudo -S sh /opt/apache-tomcat-8.5.100/bin/shutdown.sh"
-                    sh "echo '${sudoPassword}'| sudo -S sh /opt/apache-tomcat-8.5.100/bin/startup.sh"
+                    cp -r /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/apache-tomcat-8.5.100/webapps/"
                 """
                 }
             }
