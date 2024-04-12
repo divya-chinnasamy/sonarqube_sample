@@ -13,14 +13,13 @@ pipeline{
         stage("Maven Build"){
             steps{
                 sh "mvn clean package"
-                sh "mv /var/lib/jenkins/workspace/declarative-pl/target/*.war /var/lib/jenkins/workspace/declarative-pl/target/div.war"
             }
         }
         stage("Deploy-dev"){
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/div.war divya@127.0.0.1:/opt/apache-tomcat-8.5.100/webapps/
+                    scp -o StrictHostKeyChecking=no target/sonarscanner-maven-basic-1.0-SNAPSHOT.war divya@127.0.0.1:/opt/apache-tomcat-8.5.100/webapps/
                     ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/shutdown.sh
                     ssh divya@127.0.0.1:/opt/apache-tomcat-8.5.100/bin/startup.sh
                 """
