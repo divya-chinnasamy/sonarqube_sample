@@ -13,7 +13,7 @@ pipeline{
         stage("Maven Build"){
             steps{
                 sh "mvn clean package"
-                sh "mv target/*.war target/div.war"
+                sh "mv /var/lib/jenkins/workspace/declarative-pl/target/*.war /var/lib/jenkins/workspace/declarative-pl/target/div.war"
             }
         }
         stage("Deploy-dev"){
