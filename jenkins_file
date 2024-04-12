@@ -19,7 +19,7 @@ pipeline{
             steps{
                 sshagent(['tomcat-new']) {
                 sh """
-                    cp -r /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/apache-tomcat-8.5.100/webapps/"
+                    cp -r /var/lib/jenkins/workspace/declarative-pl/target/sonarscanner-maven-basic-1.0-SNAPSHOT.jar /opt/apache-tomcat-8.5.100/webapps/
                 """
                 }
             }
